@@ -1,0 +1,35 @@
+{
+    "name": "$VENDOR$/$LOWER_NAME$",
+    "type": "laravel-modules"
+    "description": "The $STUDLY_NAME$ module.",
+    "keywords": ["module", "laravel", "$LOWER_NAME$"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "$AUTHOR_NAME$",
+            "email": "$AUTHOR_EMAIL$",
+            "role": "Maintainer",
+            "homepage": "https://hafijulislam.me"
+        }
+    ],
+    "require": {
+        "php": "^8.0.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "$MODULE_NAMESPACE$\\$STUDLY_NAME$\\": ""
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [],
+            "providers": [],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

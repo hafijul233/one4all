@@ -34,64 +34,64 @@ const paths = {
     },
     dist: {
         base: {
-            dir: './dist',
-            assets: './dist/assets'
+            dir: './public/template',
+            assets: './public/template/assets'
         },
         libs: {
-            dir: './dist/assets/libs'
+            dir: './public/template/assets/libs'
         },
         css: {
-            dir: './dist/assets/css',
+            dir: './public/template/assets/css',
         },
         js: {
-            dir: './dist/assets/js',
-            files: './dist/assets/js/pages',
+            dir: './public/template/assets/js',
+            files: './public/template/assets/js/pages',
         },
     },
     src: {
         base: {
-            dir: './src',
-            assets: './src/assets/**/*',
+            dir: './resources',
+            assets: './resources/**/*',
         },
         html: {
-            files: './src/html/**/*.html',
+            files: './resources/html/**/*.html',
         },
         js: {
-            dir: './src/assets/js',
-            pages: './src/assets/js/pages',
-            files: './src/assets/js/pages/*.js',
-            main: './src/assets/js/*.js',
+            dir: './resources/js',
+            pages: './resources/js/pages',
+            files: './resources/js/pages/*.js',
+            main: './resources/js/*.js',
         },
         partials: {
-            files: './src/html/**/partials/*'
+            files: './resources/html/**/partials/*'
         },
         scss: {
-            dir: './src/assets/scss',
-            files: './src/assets/scss/**/**/*',
-            main: './src/assets/scss/config/app.scss'
+            dir: './resources/scss',
+            files: './resources/scss/**/**/*',
+            main: './resources/scss/config/app.scss'
         },
         icon: {
-            dir: './src/assets/scss',
-            files: './src/assets/scss/icons.scss',
-            main: './src/assets/scss/*.scss'
+            dir: './resources/scss',
+            files: './resources/scss/icons.scss',
+            main: './resources/scss/*.scss'
         },
         bootstrap: {
-            files: './src/assets/scss/config/bootstrap.scss',
-            typeFiles: './src/assets/scss/config/**/bootstrap.scss',
-            components: './src/assets/scss/components/*',
-            light: './src/assets/scss/config/**/_theme*',
-            variables: './src/assets/scss/config/**/_variables*',
+            files: './resources/scss/config/bootstrap.scss',
+            typeFiles: './resources/scss/config/**/bootstrap.scss',
+            components: './resources/scss/components/*',
+            light: './resources/scss/config/**/_theme*',
+            variables: './resources/scss/config/**/_variables*',
         },
         custom: {
-            dir: './src/assets/scss/config/custom.scss',
-            files: './src/assets/scss/config/**/custom.scss',
-            main: './src/assets/scss/config/custom.scss'
+            dir: './resources/scss/config/custom.scss',
+            files: './resources/scss/config/**/custom.scss',
+            main: './resources/scss/config/custom.scss'
         },
     }
 };
 
 gulp.task('browsersync', function (callback) {
-    if (envConfig.run != "all") {
+    if (envConfig.run !== "all") {
         var baseDir = paths.dist.base.dir + '/' + envConfig.run;
         browsersync.init({
             server: {
@@ -130,7 +130,7 @@ gulp.task('watch', async function () {
 });
 
 gulp.task('js', async function () {
-    if (envConfig.run != "all") {
+    if (envConfig.run !== "all") {
         var destPath = paths.dist.js.dir;
         destPath = destPath.replace(paths.dist.base.dir, paths.dist.base.dir + '/' + envConfig.run);
 
@@ -153,7 +153,7 @@ gulp.task('js', async function () {
 });
 
 gulp.task('jsPages', function () {
-    if (envConfig.run != "all") {
+    if (envConfig.run !== "all") {
         return new Promise(function (resolve, reject) {
 
             var JsPagePath = paths.dist.js.files;
@@ -181,7 +181,7 @@ gulp.task('jsPages', function () {
 
 gulp.task('bootstrap', function () {
 
-    if (envConfig.run != "all") {
+    if (envConfig.run !== "all") {
         var scssFiles = paths.src.bootstrap.files;
         scssFiles = scssFiles.replace('config', 'config/' + envConfig.run);
 
@@ -224,7 +224,7 @@ gulp.task('bootstrap', function () {
             .pipe(sourcemaps.write(sourceMapWrite))
             .pipe(gulp.dest(cssDest));
 
-        
+
 
     } else {
         return new Promise(function (resolve, reject) {
@@ -280,14 +280,14 @@ gulp.task('bootstrap', function () {
 
 gulp.task('scss', function () {
 
-    if (envConfig.run != "all") {
+    if (envConfig.run !== "all") {
         var scssFiles = paths.src.scss.main;
         scssFiles = scssFiles.replace('config', 'config/' + envConfig.run);
 
         var cssDest = paths.dist.css.dir;
         cssDest = cssDest.replace(paths.dist.base.dir, paths.dist.base.dir + '/' + envConfig.run);
 
-        
+
 
         // generate rtl
         gulp
@@ -308,7 +308,7 @@ gulp.task('scss', function () {
             .pipe(sourcemaps.write(sourceMapWrite))
             .pipe(gulp.dest(cssDest));
 
-        // generate ltr  
+        // generate ltr
         return gulp
             .src(scssFiles)
             .pipe(sourcemaps.init())
@@ -324,7 +324,7 @@ gulp.task('scss', function () {
                 })
             )
             .pipe(sourcemaps.write(sourceMapWrite))
-            .pipe(gulp.dest(cssDest));    
+            .pipe(gulp.dest(cssDest));
 
     } else {
         return new Promise(function (resolve, reject) {
@@ -380,7 +380,7 @@ gulp.task('scss', function () {
 });
 gulp.task('custom', async function () {
 
-    if (envConfig.run != "all") {
+    if (envConfig.run !== "all") {
         var scssFiles = paths.src.custom.main;
         scssFiles = scssFiles.replace('config', 'config/' + envConfig.run);
 
@@ -406,7 +406,7 @@ gulp.task('custom', async function () {
         .pipe(sourcemaps.write(sourceMapWrite))
         .pipe(gulp.dest(cssDest));
 
-        // generate ltr  
+        // generate ltr
         return gulp
             .src(scssFiles)
             .pipe(sourcemaps.init())
@@ -423,8 +423,8 @@ gulp.task('custom', async function () {
             )
             .pipe(sourcemaps.write(sourceMapWrite))
             .pipe(gulp.dest(cssDest));
-             
-        
+
+
 
 
     } else {
@@ -480,7 +480,7 @@ gulp.task('custom', async function () {
 });
 
 gulp.task('icon', async function () {
-    if (envConfig.run != "all") {
+    if (envConfig.run !== "all") {
         var iconFiles = paths.src.icon.dir;
         iconFiles = iconFiles.replace(paths.dist.base.dir, paths.dist.base.dir + '/' + envConfig.run);
 
@@ -530,7 +530,7 @@ gulp.task('icon', async function () {
 });
 
 gulp.task('fileinclude', function (callback) {
-    if (envConfig.run != "all") {
+    if (envConfig.run !== "all") {
         return new Promise(function (resolve, reject) {
 
             var htmlFiles = paths.src.html.files;
@@ -575,7 +575,7 @@ gulp.task('clean:dist', function (callback) {
 });
 
 gulp.task('copy:all', function (cb) {
-    if (envConfig.run != "all") {
+    if (envConfig.run !== "all") {
         var destPath = paths.dist.base.assets;
         destPath = destPath.replace(paths.dist.base.dir, paths.dist.base.dir + '/' + envConfig.run);
         return gulp
@@ -611,7 +611,7 @@ gulp.task('copy:all', function (cb) {
 });
 
 gulp.task('copy:libs', function () {
-    if (envConfig.run != "all") {
+    if (envConfig.run !== "all") {
         var destPath = paths.dist.libs.dir;
         destPath = destPath.replace(paths.dist.base.dir, paths.dist.base.dir + '/' + envConfig.run);
 
@@ -644,7 +644,7 @@ gulp.task('copy:libs', function () {
 
 gulp.task('html', function () {
 
-    if (envConfig.run != "all") {
+    if (envConfig.run !== "all") {
         var destPath = paths.dist.base.dir;
         destPath = destPath.replace(paths.dist.base.dir, paths.dist.base.dir + '/' + envConfig.run);
 

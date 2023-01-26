@@ -16,7 +16,15 @@ File: Main Css File
 @import "./node_modules/bootstrap/scss/variables";
 @import "variables";
 @import "./node_modules/bootstrap/scss/mixins";
+@import "./node_modules/bootstrap/scss/bootstrap";
 
+// Icons Scss
+@import "../../plugins/icons/materialdesignicons";
+@import "../../plugins/icons/boxicons";
+@import "../../plugins/icons/line-awesome";
+@import "../../plugins/icons/remixicon";
+
+//Dark & Light Theme Scss
 @import "theme-light";
 @import "theme-dark";
 

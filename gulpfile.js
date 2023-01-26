@@ -700,6 +700,6 @@ gulp.task('html', function () {
     }
 });
 
-gulp.task('build', gulp.series(gulp.parallel('clean:dist', 'copy:all', 'copy:libs', 'html', /*'bootstrap',*/ 'scss', 'js', 'jsPages', /*'icon',*/'custom'), gulp.parallel('scss', 'html')));
+gulp.task('build', gulp.series(gulp.parallel('clean:dist', 'copy:all', 'copy:libs', 'html', /*'bootstrap', 'icon',*/ 'scss', 'js', 'jsPages', 'custom'), gulp.parallel('scss', 'html')));
 
-gulp.task('default', gulp.series(gulp.parallel('clean:dist', 'copy:all', 'copy:libs', 'html',/* 'bootstrap',*/ 'scss', 'js', 'jsPages', /*'icon',*/'custom'), gulp.parallel('browsersync', 'watch')));
+gulp.task('default', gulp.series(gulp.parallel('clean:dist', 'copy:all', 'copy:libs', 'html',/* 'bootstrap', 'icon',*/ 'scss', 'js', 'jsPages', 'custom'), gulp.parallel('browsersync', 'watch')));

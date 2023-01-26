@@ -100,7 +100,7 @@ gulp.task('browsersync', function (callback) {
         });
         callback();
     } else {
-        var baseDir = paths.dist.base.dir + '/' + envConfig.demos[0];
+        var baseDir = paths.dist.base.dir;
         browsersync.init({
             server: {
                 baseDir: [baseDir, paths.src.base.dir, paths.base.base.dir]
